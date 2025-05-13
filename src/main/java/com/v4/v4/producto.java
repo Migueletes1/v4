@@ -14,7 +14,7 @@ private int id;
 @Column(nullable = false)
 private String nombre;
 @Column(nullable = false)
-private int catidad;
+private int cantidad;
 @Column(nullable = false)
 private double precio;
 public producto() {
@@ -22,7 +22,7 @@ public producto() {
 public producto(int id, String nombre, int catidad, double precio) {
     this.id = id;
     this.nombre = nombre;
-    this.catidad = catidad;
+    this.cantidad = catidad;
     this.precio = precio;
 }
     /**
@@ -57,14 +57,14 @@ public producto(int id, String nombre, int catidad, double precio) {
      * @return int return the catidad
      */
     public int getCatidad() {
-        return catidad;
+        return cantidad;
     }
 
     /**
      * @param catidad the catidad to set
      */
     public void setCatidad(int catidad) {
-        this.catidad = catidad;
+        this.cantidad = catidad;
     }
 
     /**
