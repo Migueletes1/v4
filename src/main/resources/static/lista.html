@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inventario Simple</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Inventario de Productos</h1>
+        
+        <div class="row mb-3">
+            <div class="col">
+                <a th:href="@{/nuevo}" class="btn btn-primary">Nuevo Producto</a>
+                <a th:href="@{/stock-bajo}" class="btn btn-warning">Ver Stock Bajo</a>
+            </div>
+            <div class="col">
+                <form th:action="@{/buscar}" method="get" class="d-flex">
+                    <input type="text" name="nombre" class="form-control me-2" placeholder="Buscar producto...">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.id}"></td>
+                    <td th:text="${producto.nombre}"></td>
+                    <td th:text="${producto.descripcion}"></td>
+                    <td th:text="${producto.cantidad}" th:class="${producto.cantidad <= 5} ? 'text-danger' : ''"></td>
+                    <td th:text="${producto.precio}"></td>
+                    <td>
+                        <a th:href="@{/editar/{id}(id=${producto.id})}" class="btn btn-sm btn-primary">Editar</a>
+                        <a th:href="@{/eliminar/{id}(id=${producto.id})}" class="btn btn-sm btn-danger" 
+                           onclick="return confirm('¿Estás seguro?')">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+formulario.html
